@@ -50,3 +50,9 @@ return
 
 
 return
+
+NumpadAdd::
+	send {LAlt down}
+	send {Esc}
+	send {LAlt up}
+return
