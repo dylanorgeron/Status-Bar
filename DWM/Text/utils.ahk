@@ -1,3 +1,7 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Active Window Switcher
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 Gui +LastFound 
 hWnd := WinExist()
 DllCall( "RegisterShellHookWindow", UInt,Hwnd )
@@ -18,7 +22,9 @@ ShellMessage( wParam,lParam )
 	SendMessage, 0x111, 4001,,, ahk_class RainmeterMeterWindow
 }
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Waits for input, then changes the workspace accordingly
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 currentWorkspace := 1
 
@@ -71,8 +77,28 @@ return
 
 return
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;Shift through active windows
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 NumpadAdd::
 	send {LAlt down}
 	send {Esc}
 	send {LAlt up}
 return
+
+; Hide completely task bar
+; Paste this line to your autohotkey then press <Windows> + H to toggle your taskbar
+; Credit to the original author in autohotkey forum :)
+LWin & h::
+if toggle := !toggle
+{
+  WinHide ahk_class Shell_TrayWnd
+  WinHide Start ahk_class Button
+}
+else
+{
+  WinShow ahk_class Shell_TrayWnd
+  WinShow Start ahk_class Button
+}
+returng
