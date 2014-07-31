@@ -1,2 +1,0 @@
-[Variables]
-Workspace = "1"
